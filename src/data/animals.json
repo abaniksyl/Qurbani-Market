@@ -1,0 +1,80 @@
+[
+  {
+    "id": "1",
+    "name": "Premium Sahiwal Bull",
+    "type": "Cow",
+    "category": "Premium",
+    "price": 250000,
+    "weight": "450 kg",
+    "age": "2.5 years",
+    "location": "Savar Dairy Farm",
+    "image": "https://images.unsplash.com/photo-1545468800-85cc9bc6ecf7?auto=format&fit=crop&w=800&q=80",
+    "description": "A magnificent Sahiwal bull, known for its high meat yield and excellent health. Fully vaccinated and organically fed.",
+    "featured": true
+  },
+  {
+    "id": "2",
+    "name": "Deshi Red Bull",
+    "type": "Cow",
+    "category": "Standard",
+    "price": 120000,
+    "weight": "280 kg",
+    "age": "2 years",
+    "location": "Gazipur Cattle Point",
+    "image": "https://images.unsplash.com/photo-1570042225831-d98fa7577f1e?auto=format&fit=crop&w=800&q=80",
+    "description": "A strong and active Deshi bull. Perfect for a family Qurbani. Reared in open fields with natural grass.",
+    "featured": true
+  },
+  {
+    "id": "3",
+    "name": "Brahman Cross",
+    "type": "Cow",
+    "category": "Premium",
+    "price": 350000,
+    "weight": "600 kg",
+    "age": "3 years",
+    "location": "Gabtoli Haat",
+    "image": "https://images.unsplash.com/photo-1527153857715-3908f2bae5e8?auto=format&fit=crop&w=800&q=80",
+    "description": "A massive Brahman crossbreed. Known for superior meat quality and calm temperament. A truly majestic animal.",
+    "featured": true
+  },
+  {
+    "id": "4",
+    "name": "Jamnapari Goat",
+    "type": "Goat",
+    "category": "Premium",
+    "price": 45000,
+    "weight": "45 kg",
+    "age": "1.5 years",
+    "location": "Keraniganj Farm",
+    "image": "https://images.unsplash.com/photo-1524024973431-2ad916746881?auto=format&fit=crop&w=800&q=80",
+    "description": "A beautiful Jamnapari goat with long ears and an impressive build. Ideal for a smaller, premium Qurbani.",
+    "featured": true
+  },
+  {
+    "id": "5",
+    "name": "Black Bengal Goat",
+    "type": "Goat",
+    "category": "Standard",
+    "price": 25000,
+    "weight": "22 kg",
+    "age": "1 year",
+    "location": "Mirpur Local",
+    "image": "https://images.unsplash.com/photo-1614088925567-9d7a224956db?auto=format&fit=crop&w=800&q=80",
+    "description": "The famous Black Bengal goat, renowned for the best tasting meat. Completely healthy and energetic.",
+    "featured": false
+  },
+  {
+    "id": "6",
+    "name": "Sindhi Bull",
+    "type": "Cow",
+    "category": "Premium",
+    "price": 180000,
+    "weight": "350 kg",
+    "age": "2.5 years",
+    "location": "Narayanganj Market",
+    "image": "https://images.unsplash.com/photo-1589410115049-ee66eb5a828d?auto=format&fit=crop&w=800&q=80",
+    "description": "A stunning Sindhi breed bull with a distinct red coat. Raised with care and high-quality feed.",
+    "featured": false
+  }
+]
