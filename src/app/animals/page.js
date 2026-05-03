@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import AnimalCard from "@/components/AnimalCard";
-import animalsData from "@/data/animals.json";
+import animalsData from "../../../public/data/animals.json";
 
 export default function Animals() {
   const [filterType, setFilterType] = useState("All");

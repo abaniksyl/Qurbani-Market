@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
-import animalsData from "@/data/animals.json";
+import animalsData from "../../../public/data/animals.json";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import BookingForm from "@/components/BookingForm";
 import Link from "next/link";

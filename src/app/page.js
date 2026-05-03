@@ -1,6 +1,6 @@
 import Link from "next/link";
 import AnimalCard from "@/components/AnimalCard";
-import animalsData from "@/data/animals.json";
+import animalsData from "../../public/data/animals.json";
 
 export default function Home() {
   const featuredAnimals = animalsData.filter((animal) => animal.featured).slice(0, 4);
