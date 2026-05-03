@@ -1,86 +1,76 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect } from "react";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
+  const { data: session, isPending: loading } = authClient.useSession();
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
-    // Check if user is logged in (mocking localStorage persistence)
-    const storedUser = localStorage.getItem("qurbani_user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    if (session?.user) {
+      setUser({
+        id: session.user.id,
+        name: session.user.name,
+        email: session.user.email,
+        avatar: session.user.image || "https://i.pravatar.cc/150?u=" + session.user.email,
+      });
+    } else {
+      setUser(null);
     }
-    setLoading(false);
-  }, []);
+  }, [session]);
 
   const login = async (email, password) => {
-    setLoading(true);
-    // Mock network request
-    await new Promise((resolve) => setTimeout(resolve, 800));
+    const { data, error } = await authClient.signIn.email({
+      email,
+      password,
+    });
     
-    if (email && password) {
-      const mockUser = {
-        name: "Test User",
-        email: email,
-        avatar: "https://i.pravatar.cc/150?u=" + email,
-      };
-      setUser(mockUser);
-      localStorage.setItem("qurbani_user", JSON.stringify(mockUser));
-      setLoading(false);
-      return { success: true };
+    if (error) {
+      return { success: false, error: error.message || "Invalid credentials" };
     }
-    setLoading(false);
-    return { success: false, error: "Invalid credentials" };
-  };
-
-  const register = async (name, email, password) => {
-    setLoading(true);
-    // Mock network request
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    
-    if (name && email && password) {
-      const mockUser = {
-        name: name,
-        email: email,
-        avatar: "https://i.pravatar.cc/150?u=" + email,
-      };
-      setUser(mockUser);
-      localStorage.setItem("qurbani_user", JSON.stringify(mockUser));
-      setLoading(false);
-      return { success: true };
-    }
-    setLoading(false);
-    return { success: false, error: "Missing information" };
-  };
-
-  const loginWithGoogle = async () => {
-    setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    const mockUser = {
-      name: "Google User",
-      email: "google.user@example.com",
-      avatar: "https://i.pravatar.cc/150?img=11",
-    };
-    setUser(mockUser);
-    localStorage.setItem("qurbani_user", JSON.stringify(mockUser));
-    setLoading(false);
     return { success: true };
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("qurbani_user");
+  const register = async (name, email, password) => {
+    const { data, error } = await authClient.signUp.email({
+      name,
+      email,
+      password,
+    });
+    
+    if (error) {
+      return { success: false, error: error.message || "Failed to register" };
+    }
+    return { success: true };
   };
 
-  const updateProfile = (name, avatar) => {
+  const loginWithGoogle = async () => {
+    const { data, error } = await authClient.signIn.social({
+      provider: "google",
+    });
+    
+    if (error) {
+      return { success: false, error: error.message || "Google login failed" };
+    }
+    return { success: true };
+  };
+
+  const logout = async () => {
+    await authClient.signOut();
+    setUser(null);
+    router.push("/");
+  };
+
+  const updateProfile = async (name, avatar) => {
+    // Note: better-auth might need a plugin for this or direct DB update
+    // For now, we'll keep it as a placeholder or update local state
     if (user) {
-      const updatedUser = { ...user, name, avatar };
-      setUser(updatedUser);
-      localStorage.setItem("qurbani_user", JSON.stringify(updatedUser));
+      setUser(prev => ({ ...prev, name, avatar }));
     }
   };
 
